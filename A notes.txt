@@ -1,0 +1,183 @@
+KEY POINTS :-
+#1-->"browserlist":[
+    "last 2 Chrome version"
+  ] will perfectly run latest 2 chorme version.
+
+#2-->config driven
+
+
+
+
+-->1.CORS (Cross-Origin Resource Sharing) is a security feature that allows websites to request resources from another domain (a different website) safely.
+### In simple terms:
+   Imagine you have a bakery (your website) that wants to buy ingredients (data) from another bakery across town (another website). The town has a rule that says, "No bakery can take ingredients from another unless permission is given." 
+   This rule is similar to CORS in the web world. When your website tries to get data from a different server (like fetching user info or images), CORS ensures the other server explicitly allows your website to access it.
+   If the permission isn't given, the browser blocks the request to prevent potential security risks. This way, CORS protects websites from unauthorized access to their data.
+
+
+-->2.react basics;
+//when you add react than create type="module" otherwise it will thorugh the module error.
+<script type="module" src="./App.js"></script>
+
+//createElement will take three arguments 1st is tagname, 2nd is object{gives attribute to the class}, 3rd is content{it is the work of React->React.createElement}
+--const heading = React.createElement('h1',{class:'header'},'heading came from react');
+
+//createRoot will select a root where the element is going to insert{it's inside the ReactDOM}.
+--const root = ReactDOM.createRoot(document.getElementById('root'));
+
+//below code will insert the heading into root and get displayed on the html.
+--root.render(heading); 
+
+
+
+-->3.What is package.json?
+ In simple terms, the package.json file is a special configuration file used in Node.js and  JavaScript projects to manage project dependencies, scripts, and metadata. It's like a  blueprint for your project that provides essential information for package managers like npm or Yarn.
+
+-->4.Babel is like a translator that converts cutting-edge JavaScript code into a version that all browsers can understand. This way, you can use the latest features without worrying about compatibility issues.
+
+-->5.Why Do We Need Bundlers?
+When building modern JavaScript applications, we often have multiple files (JavaScript, CSS, images, etc.) and dependencies. Bundlers like Parcel and Vite take all these files and dependencies, combine them, and optimize them into a smaller, faster version that’s ready for deployment.
+
+-->6.npm commands
+--> npm init: Start a new project.
+--> npm install -D <package_name>: Get the packages you need {D will take it as a dev   dependencies which use only in development period}
+--> npm uninstall: Remove packages you don’t need.
+--> npm update: Keep your packages up to date.
+--> npm list: See what packages are installed.
+--> npm run: Run scripts defined in your project.
+--> npm test: Run your tests.
+--> npm outdated: Check for outdated packages.
+--> npm audit: Check for security issues in your packages.
+--> npm cache clean: Clear the npm cache if you're having issues.
+--> npm install --save-dev: Add a package as a development tool.
+--> npm install --save: Add a package for your app to run.
+--> npm publish: Share your package with others.
+--> npm start: runs the start script.
+--> To stop npm from running in the terminal, you can typically use the CTRL + C keyboard shortcut.
+--> npx[exicuting a package] parcel <filename> parcel will generate a server and open a <filename>
+
+-->7 (.gitignore) will contain all the files which will be ignored when we deal with github.
+for example -> /node_modules (now node_modules will be ignored) and usually we don’t add node_modules to our github because our package.json will contain all the node_modules and we can reinstall by using only [git install] command.
+thing which you can regenerate , don’t put it on git
+ 
+
+-->8 
+npx parcel: Used for development—runs a server that watches your files and updates automatically when you make changes.
+npx parcel build: Used for production—generates optimized and minified files that are ready to be deployed.
+
+
+-->9
+instead of writing {npx parcel index.html }repeatedly, i can add this into our script which is inside package.json and than i have to use {npm start} to run the same thing  
+ex:- inside package.json
+"scripts":{
+  "start":"parcel index.html",
+  "build":"parcel build index.html",
+}
+
+-->10 //JSX - HTML like or XML like syntax.
+-->const jsxheading = <h1 id="heading">this is first jsx heading</h1>
+/under the hood babel is converting this jsx code into react/
+/we can also use converter to convert html into css into jsx/
+
+
+-->11 REACT COMPONANTS :-
+
+//react function componants - they are just  function starts with capital letter.
+const JSXfunction = function(){
+  return ( <h1>I am from jsxfunction</h1> );
+}
+const root = ReactDOM.createRoot(document.getElementById("root"));
+//to render the componants you must close it inside = <____/>;
+root.render(<JSXfunction/>);
+
+-->12
+const JSXbutton = () => {
+  return (
+    <button>
+      click me <h1>jsx</h1>
+    </button>
+  );
+};
+
+//react function componants - they are just  function starts with capital letter.
+const JSXfunction = function () {
+  return (
+    <div>
+      <h1>I am from jsxfunction</h1> <JSXbutton /> //this <JSXbutton /> will add JSXbutton here.
+    </div>
+  );
+}
+
+-->13 if you want to run any js code or add react element than use {} curly braces;
+const JSXfunction = function () {
+  return (
+    <div>
+      <h1>{element}I am from{300+400} jsxfunction</h1> <JSXbutton /> //this <JSXbutton /> will add JSXbutton here.
+    </div>
+  );
+}
+
+-->14 COMPONANT COMPOSITION - componant inside componant 
+<element/> == <element></element>
+<FunctioalComponant/> == <FunctioalComponant></function componant> == {FunctiolComponant()}
+
+
+-->15 PASSING DYNAMIC DATA INTO COMPONANT THAN PASS IT AS A COMPONANT:-
+const Showdata = (props)=>{
+  return(<h1>{props.data}</h1>);
+}
+const GetData = ()=>{
+  <Showdata data="4"/>
+}
+
+
+-->16 TO LOOP OVER AND ADD COMPONANT YOU SHOULD USE MAP FUNCTION:-
+--#best practice is to provide a key[uniquely identification] when you are  using map it helps in defining the componant position and also helps to render the componant faster.
+--#Do not use index as an id it's bad practice.
+   restList.map((item, index) => {
+     return <RestCard key={index} data={item} />;
+   });
+
+
+-->17 USE IMPORT EXPORT TO REDUCE THE CODE COMPLEXITY
+--  export default restList;[there is only one export default in one file]
+     // Default export
+     export default function multiply(a, b) {
+       return a * b;
+     }
+     // Default import
+     import multiply from './math.js';
+     console.log(multiply(5, 2));  // Output: 10
+
+--  export restLists ;[it's used when we export muliple values]
+     // Named exports
+     export const pi = 3.14;
+     export function add(a, b) {
+       return a + b;
+     }   
+     // Named import
+     import { pi, add } from './math.js';
+     console.log(pi);         // Output: 3.14
+     console.log(add(5, 2));  // Output: 7
+
+  Number of Exports :-
+      export: Can have multiple named exports in a single file.
+      export default: Can have only one default export in a file.
+      Syntax for Importing:
+      
+      export: Import using curly braces {} and must use the exact name.
+      export default: Import without curly braces and can use any name.
+      Use Case:
+      
+      export: Used when exporting multiple items (functions, variables, etc.) from a module.
+      export default: Used when exporting a single primary value or function as the main export of a module.
+    
+-->18. INDUSTRIES BEST PRACTICE
+--always try to put different componants in different files file.js/file.jsx
+--and make a seperate file for hard coded data mainly it's called utils
+
+-->19. HOW PATH WORKS :-
+You can use these indicators multiple times to navigate through the folder structure:
+   "./"     -> Current directory.
+   "../"    -> Go up one level to the parent directory.
+   "../../" -> Go up two levels in the directory structure, and so on.
