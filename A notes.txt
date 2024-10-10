@@ -4,6 +4,11 @@ KEY POINTS :-
   ] will perfectly run latest 2 chorme version.
 
 #2-->config driven
+#3-->not possible to return multiple tags if you want than use empty container or div tag <>content</> or <div>content</div>
+  <>
+  <li>ahah</li>
+  <li>ahah</li>
+  </>
 
 
 
@@ -122,7 +127,7 @@ const JSXfunction = function () {
 <FunctioalComponant/> == <FunctioalComponant></function componant> == {FunctiolComponant()}
 
 
--->15 PASSING DYNAMIC DATA INTO COMPONANT THAN PASS IT AS A COMPONANT:-
+-->15 [props] PASSING DYNAMIC DATA INTO COMPONANT THAN PASS IT AS A COMPONANT:-
 const Showdata = (props)=>{
   return(<h1>{props.data}</h1>);
 }
@@ -181,3 +186,47 @@ You can use these indicators multiple times to navigate through the folder struc
    "./"     -> Current directory.
    "../"    -> Go up one level to the parent directory.
    "../../" -> Go up two levels in the directory structure, and so on.
+
+-->20. HANDLING EVENTs-->
+      function MyButton() 
+      {
+        function handleClick() {
+          alert('You clicked me!');
+        }
+        return (
+          <button onClick={handleClick}>
+            Click me
+          </button>
+        );
+      }
+
+-->21 HOOKS
+#_useState ->
+step 1 - import {useState} from "react";
+step 2 - define local state variables;
+         const [x,setx] = useState([y])
+step 3 - to change the state , modify {x} and pass it inside the setx(modified_x) and return it.
+         <button onClick={()=>{
+          setx(x+1);
+         }}>value of x {x}</button>
+step 4 - after updation react will rerenders the componant
+      
+  for ex :-
+  
+      function MyButton() 
+      {
+        const [count, setCount] = useState(0);
+      
+        function handleClick() {
+          setCount(count + 1);
+        }
+        return (
+          <button onClick={handleClick}>
+            Clicked {count} times
+          </button>
+        );
+      }
+
+
+------------------------------WHITE BOARD CONTENT--------------------
+-->22 REACT useEffect 
